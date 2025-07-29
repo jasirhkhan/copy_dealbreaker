@@ -1,0 +1,47 @@
+.navbar {
+    width: 100vw; /* force full width of viewport */
+    background-color: #1a1a1a;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    z-index: 1000;
+  }
+  
+  .navbar-left .logo {
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .dot {
+    color: #f05454;
+  }
+  
+  .navbar-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-right a,
+  .navbar-right button {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .logout-btn:hover,
+  .navbar-right a:hover {
+    text-decoration: underline;
+  }
+  
