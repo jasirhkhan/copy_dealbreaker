@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors'
 import userRoutes from './routes/userRoutes.js';  
 import authRoutes from './middleware/auth.js'
-import brandRoutes from './routes/userRoutes.js';
+import brandRoutes from './routes/brandRoutes.js';
 
 
 
@@ -20,7 +20,7 @@ app.use(cors())
   
 app.use('/', userRoutes);
 app.use('/auth', authRoutes);
-app.use('/brands', brandRoutes);
+app.use('/brand', brandRoutes);
 
 
 mongoose.connect(process.env.MONG_URI)

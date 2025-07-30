@@ -1,8 +1,8 @@
 import express from 'express';
-import { getBrands } from '../controllers/brandController.js';
+import { getBrands,createBrand } from '../controllers/brandController.js';
 
 const router = express.Router();
 
-router.get('/', getBrands); // GET /brands
-
+router.get('/get', getBrands); // GET /brands
+router.post('/create', createBrand); // POST /brands
 export default router;
