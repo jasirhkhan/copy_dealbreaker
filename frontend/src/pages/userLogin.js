@@ -36,10 +36,10 @@ const Login = () => {
       login(res.data.token, res.data.user);
       navigate('/dashboard');
     } catch (err) {
-      console.error('Login failed:', err);
-      setError(err.response?.data?.message || 'Invalid credentials. Please try again.');
+        console.error('Login failed:', err);
+        setError(err.response?.data?.message || 'Invalid credentials. Please try again.');
     } finally {
-      setIsLoading(false);
+        setIsLoading(false);
     }
   };
 

@@ -1,508 +1,189 @@
-/* Modern Login Page Styles */
-/* Import design system for consistent theming */
-@import './design-system.css';
-
-/* --- Particle Background Animation --- */
-@keyframes particleFloat {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-    opacity: 0.7;
-  }
-  50% {
-    transform: translateY(-20px) rotate(180deg);
-    opacity: 1;
-  }
-}
-
-@keyframes particleDrift {
-  0% {
-    transform: translateX(0px);
-  }
-  100% {
-    transform: translateX(100px);
-  }
-}
-
-/* --- Base Body and Root Element Styling --- */
+/* --- Base Styling --- */
 html, body, #root {
   height: 100%;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f2f4f8;
+  color: #222; /* dark text for readability */
 }
 
+/* --- Centering Container --- */
 body {
-  font-family: var(--font-family-sans);
-  background: var(--gradient-primary);
-  background-size: 400% 400%;
-  animation: gradientShift 10s ease infinite;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  overflow: hidden;
-  position: relative;
+  overflow: auto;
 }
 
-/* Particle Background Effect */
-body::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
-    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
-    radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-  background-size: 100px 100px, 150px 150px, 200px 200px;
-  animation: particleDrift 20s linear infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-  
-/* --- Glass-Morphism Login Container --- */
+/* --- Card --- */
 .login-container {
-  background: var(--gradient-glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: var(--radius-3xl);
-  box-shadow: var(--shadow-glass);
-  text-align: center;
-  width: 100%;
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
   max-width: 420px;
-  padding: var(--space-12) var(--space-10);
-  box-sizing: border-box;
-  position: relative;
-  z-index: 2;
-  animation: scaleInBounce var(--duration-slow) var(--easing-bounce) forwards;
-  margin: var(--space-5);
+  width: 100%;
+  margin: 20px;
+  animation: fadeIn 0.6s ease-out;
 }
 
-/* Enhanced entrance animation */
-@keyframes scaleInBounce {
-  0% {
-    opacity: 0;
-    transform: scale(0.8) translateY(20px);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.02) translateY(-5px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-  
-/* --- Logo Styling --- */
+
+/* --- Logo --- */
 .login-logo {
-  font-size: var(--font-size-5xl);
-  font-weight: var(--font-weight-extrabold);
-  color: rgba(255, 255, 255, 0.95);
-  margin-bottom: var(--space-8);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  animation: fadeInDown var(--duration-normal) var(--easing-smooth) forwards;
-  animation-delay: 200ms;
-  opacity: 0;
+  font-size: 40px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 25px;
 }
-
 .login-logo .dot {
-  color: var(--color-warning-500);
-  text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+  color: #fdbf2d;
 }
 
-/* --- Heading Styling --- */
+/* --- Heading --- */
 .login-container h2 {
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: var(--space-8);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  animation: fadeInUp var(--duration-normal) var(--easing-smooth) forwards;
-  animation-delay: 400ms;
-  opacity: 0;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #111;
 }
-  
-/* --- Floating Label Form Styling --- */
+
+/* --- Form Elements --- */
 .form-group {
-  position: relative;
-  margin-bottom: var(--space-6);
+  margin-bottom: 18px;
   text-align: left;
-  animation: fadeInUp var(--duration-normal) var(--easing-smooth) forwards;
-  animation-delay: 600ms;
-  opacity: 0;
 }
 
-.form-group:nth-child(2) {
-  animation-delay: 700ms;
-}
-
-.form-group:nth-child(3) {
-  animation-delay: 800ms;
+.form-group label {
+  font-size: 14px;
+  color: #555;
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
 }
 
 .form-group input {
   width: 100%;
-  padding: var(--space-4) var(--space-4) var(--space-3) var(--space-4);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: var(--radius-xl);
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  font-size: var(--font-size-base);
-  font-family: var(--font-family-sans);
-  color: rgba(255, 255, 255, 0.95);
-  transition: all var(--duration-normal) var(--easing-smooth);
+  padding: 12px 14px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   outline: none;
-  box-sizing: border-box;
-}
-
-.form-group input::placeholder {
-  color: transparent;
+  transition: border 0.2s, box-shadow 0.2s;
 }
 
 .form-group input:focus {
-  border-color: rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
+  border-color: #fdbf2d;
+  box-shadow: 0 0 0 3px rgba(253, 191, 45, 0.25);
 }
 
-.form-group label {
-  position: absolute;
-  left: var(--space-4);
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
-  color: rgba(255, 255, 255, 0.7);
-  pointer-events: none;
-  transition: all var(--duration-normal) var(--easing-smooth);
-  transform-origin: left center;
-  z-index: 1;
-}
-
-.form-group input:focus + label,
-.form-group input:not(:placeholder-shown) + label,
-.form-group input.has-value + label {
-  transform: translateY(-150%) scale(0.85);
-  color: rgba(255, 255, 255, 0.9);
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0 var(--space-2);
-  border-radius: var(--radius-base);
-  backdrop-filter: blur(10px);
-}
-  
-/* --- Modern Button Styling --- */
+/* --- Button --- */
 .login-btn {
   width: 100%;
-  padding: var(--space-4) var(--space-6);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
-  color: var(--color-neutral-900);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: var(--radius-xl);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-  font-family: var(--font-family-sans);
+  padding: 14px;
+  background: #fdbf2d;
+  color: #000;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all var(--duration-normal) var(--easing-smooth);
-  margin-top: var(--space-6);
+  transition: background 0.3s;
+  margin-top: 10px;
+}
+.login-btn:hover {
+  background: #e0a800;
+}
+
+/* --- Error Message --- */
+.error-message {
+  color: #d93025;
+  font-size: 14px;
+  margin: 8px 0;
+  text-align: center;
+}
+
+/* --- Bottom Link --- */
+.register-link {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+}
+.register-link a {
+  color: #007bff;
+  font-weight: 600;
+  text-decoration: none;
+}
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* --- Role Selector --- */
+.role-selector {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.role-selector label {
+  font-size: 15px;
+  color: #444;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* Custom Radio Button */
+.role-selector input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
   position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-  animation: fadeInUp var(--duration-normal) var(--easing-smooth) forwards;
-  animation-delay: 900ms;
-  opacity: 0;
+  transition: all 0.2s ease;
 }
 
-.login-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.9) 100%);
-  border-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+.role-selector input[type="radio"]:checked {
+  border-color: #fdbf2d;
+  background-color: #fdbf2d;
 }
 
-.login-btn:active:not(:disabled) {
-  transform: translateY(0);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Loading state for button */
-.login-btn.loading {
-  color: transparent;
-  pointer-events: none;
-}
-
-.login-btn.loading::after {
+.role-selector input[type="radio"]:checked::before {
   content: '';
+  width: 8px;
+  height: 8px;
+  background: #000;
+  border-radius: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--color-neutral-400);
-  border-top-color: var(--color-neutral-900);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-  
-/* --- Error Message Styling --- */
-.error-message {
-  color: rgba(255, 255, 255, 0.9);
-  background: rgba(239, 68, 68, 0.2);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  border-radius: var(--radius-lg);
-  padding: var(--space-3) var(--space-4);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  text-align: center;
-  margin-top: var(--space-2);
-  margin-bottom: var(--space-4);
-  backdrop-filter: blur(10px);
-  animation: shake var(--duration-slow) var(--easing-smooth);
 }
 
-/* --- Register/Login Link Styling --- */
-.register-link {
-  margin-top: var(--space-8);
-  font-size: var(--font-size-base);
-  color: rgba(255, 255, 255, 0.8);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  animation: fadeInUp var(--duration-normal) var(--easing-smooth) forwards;
-  animation-delay: 1000ms;
-  opacity: 0;
-}
-
-.register-link a {
-  color: rgba(255, 255, 255, 0.95);
-  text-decoration: none;
-  font-weight: var(--font-weight-semibold);
-  transition: all var(--duration-fast) var(--easing-smooth);
-  border-bottom: 1px solid transparent;
-}
-
-.register-link a:hover {
-  color: white;
-  border-bottom-color: rgba(255, 255, 255, 0.7);
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-}
-  
-/* --- Role Selector Styling (for Signup page) --- */
-.role-selector {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-8);
-  margin-top: var(--space-4);
-  animation: fadeInUp var(--duration-normal) var(--easing-smooth) forwards;
-  animation-delay: 800ms;
-  opacity: 0;
-}
-
-.role-selector label {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  font-weight: var(--font-weight-medium);
-  color: rgba(255, 255, 255, 0.9);
-  font-size: var(--font-size-base);
-  transition: all var(--duration-fast) var(--easing-smooth);
-  position: relative;
-  z-index: 1;
-}
-
-/* Custom radio button appearance */
-.role-selector input[type="radio"] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  border-radius: 50%;
-  margin-right: var(--space-3);
-  position: relative;
-  transition: all var(--duration-normal) var(--easing-smooth);
-  cursor: pointer;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-}
-
-/* Style for the radio button when it's checked */
-.role-selector input[type="radio"]:checked {
-  border-color: rgba(255, 255, 255, 0.8);
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-}
-
-/* Inner dot for the checked state */
-.role-selector input[type="radio"]:checked::before {
-  content: '';
-  display: block;
-  width: 8px;
-  height: 8px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  transition: transform var(--duration-fast) var(--easing-bounce);
-}
-
-/* Hover effect on the custom radio button */
-.role-selector label:hover input[type="radio"] {
-  border-color: rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.role-selector label:hover input[type="radio"]:checked {
-  border-color: white;
-  background: rgba(255, 255, 255, 0.3);
-}
-
-/* --- Password Strength Indicator --- */
-.password-strength {
-  margin-top: var(--space-3);
-  animation: fadeInUp var(--duration-normal) var(--easing-smooth) forwards;
-}
-
-.strength-bar {
-  width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-  margin-bottom: var(--space-2);
-}
-
-.strength-fill {
-  height: 100%;
-  border-radius: var(--radius-full);
-  transition: all var(--duration-normal) var(--easing-smooth);
-  background: linear-gradient(90deg, #ef4444, #f59e0b, #eab308, #22c55e, #16a34a);
-}
-
-.strength-fill.strength-0,
-.strength-fill.strength-1 {
-  background: var(--color-error-500);
-}
-
-.strength-fill.strength-2 {
-  background: #f59e0b;
-}
-
-.strength-fill.strength-3 {
-  background: var(--color-warning-500);
-}
-
-.strength-fill.strength-4 {
-  background: #22c55e;
-}
-
-.strength-fill.strength-5 {
-  background: var(--color-success-500);
-}
-
-.strength-text {
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-  transition: color var(--duration-normal) var(--easing-smooth);
-}
-
-.strength-text.strength-0,
-.strength-text.strength-1 {
-  color: rgba(239, 68, 68, 0.9);
-}
-
-.strength-text.strength-2 {
-  color: rgba(245, 158, 11, 0.9);
-}
-
-.strength-text.strength-3 {
-  color: rgba(234, 179, 8, 0.9);
-}
-
-.strength-text.strength-4 {
-  color: rgba(34, 197, 94, 0.9);
-}
-
-.strength-text.strength-5 {
-  color: rgba(22, 163, 74, 0.9);
-}
-  
-/* --- Responsive Adjustments --- */
-@media (max-width: 640px) {
-  body {
-    overflow: auto;
-    padding: var(--space-4);
-  }
-  
+/* --- Responsive --- */
+@media (max-width: 480px) {
   .login-container {
-    padding: var(--space-8) var(--space-6);
-    margin: var(--space-4);
-    max-width: 100%;
+    padding: 30px 20px;
   }
-  
   .login-logo {
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--space-6);
+    font-size: 34px;
   }
-  
   .login-container h2 {
-    font-size: var(--font-size-2xl);
-    margin-bottom: var(--space-6);
+    font-size: 20px;
   }
-  
-  .form-group {
-    margin-bottom: var(--space-5);
-  }
-  
-  .form-group input {
-    padding: var(--space-3) var(--space-4);
-  }
-  
   .login-btn {
-    padding: var(--space-3) var(--space-5);
-    font-size: var(--font-size-base);
-    margin-top: var(--space-5);
+    font-size: 15px;
+    padding: 12px;
   }
-  
-  .register-link {
-    margin-top: var(--space-6);
-    font-size: var(--font-size-sm);
-  }
-  
   .role-selector {
-    gap: var(--space-4);
+    gap: 12px;
     flex-wrap: wrap;
-  }
-}
-
-/* --- Accessibility and Motion Preferences --- */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  
-  body::before {
-    animation: none !important;
-  }
-  
-  .login-container,
-  .login-logo,
-  .login-container h2,
-  .form-group,
-  .login-btn,
-  .register-link,
-  .role-selector {
-    animation: none !important;
-    opacity: 1 !important;
   }
 }
